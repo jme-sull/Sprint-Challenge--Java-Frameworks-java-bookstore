@@ -193,7 +193,7 @@ public class BookControllerTest
         ObjectMapper mapper = new ObjectMapper();
         String er = mapper.writeValueAsString(bookList.get(1));
 
-        mockMvc.perform(rb).andExpect(status().isNotFound()).andDo(MockMvcResultHandlers.print());
+        mockMvc.perform(rb).andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());
 
     }
 
