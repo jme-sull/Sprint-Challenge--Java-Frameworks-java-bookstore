@@ -64,6 +64,7 @@ public class RestExceptionHandler
      * @param rnfe All the information about the exception that is thrown.
      * @return The error details for displaying to the client plus the status Not Found.
      */
+
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundException rnfe)
     {
