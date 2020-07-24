@@ -16,34 +16,14 @@ import javax.sql.DataSource;
 @Configuration
 public class DataSourceConfig
 {
-    @Autowired
-    private ApplicationContext appContext;
-
-    @Autowired
-    private Environment env;
-
-    @Value("${DATABASE_URL}")
+    @Value("${spring.datasource.url}")
     private String dbUrl;
 
     @Bean
     public DataSource dataSource()
     {
-        String dbValue = env.getProperty("local.run.db");
-
-        if (dbValue.equalsIgnoreCase("POSTGRESQL"))
-        {
-            HikariConfig config = new HikariConfig();
-            config.setJdbcUrl(dbUrl);
-            return new HikariDataSource(config);
-        } else
-        {
-            return DataSourceBuilder.create()
-                .username("sa")
-                .password("")
-                .url("jdbc:h2:mem:testdb")
-                .driverClassName("org.h2.Driver")
-                .build();
-        }
-
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(dbUrl);
+        return new HikariDataSource(config);
     }
 }
